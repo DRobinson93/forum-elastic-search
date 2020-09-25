@@ -4,7 +4,6 @@ require 'common.php';
 
 if(!empty($_GET)){
     $inputSanitized = filter_var($_GET['searchTxt'], FILTER_SANITIZE_STRING);
-    echo $inputSanitized;
     $params = [
         'index' => MAIN_INDEX,
         'body'  => [
@@ -65,7 +64,6 @@ else{
                         $('#userResults').append(`<li class="list-group-item">${val}</li>`);
                     });
                     response.hits.forEach(hit => {
-                        console.log(hit._source)
                         const d = hit._source;
                         const postHtml=insertHighlights(search, d.post_value);
                         $('#postResults').append(`
