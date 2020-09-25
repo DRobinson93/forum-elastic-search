@@ -2,6 +2,8 @@
 Elastic Search for data from a forum
 
 **elastic search needs to be installed to use this**
+//for me to start::
+~/elasticsearch-7.9.1/bin/elasticsearch
 
 //install composer reqs:
 curl -s http://getcomposer.org/installer | php

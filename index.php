@@ -41,13 +41,21 @@ else{
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     <body>
-    <input placeholder="Enter some text" name="name"/>
-    <div class="row">
-        <div class="col-6">
-            <ul id="userResults" class="list-group results"></ul>
-        </div>
-        <div class="col-6">
-            <ul id="postResults" class="list-group results"></ul>
+    <div class="jumbotron p-3">
+        <label class="col-12">
+            <input class="form-control" placeholder="Enter some text" name="name"/>
+        </label>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <h4>Usernames</h4>
+                <ul id="userResults" class="list-group results"></ul>
+            </div>
+            <div class="col-6">
+                <h4>Posts:</h4>
+                <ul id="postResults" class="list-group results"></ul>
+            </div>
         </div>
     </div>
     </body>
@@ -61,14 +69,14 @@ else{
                     $('.results').html(""); //clear all results areas
                     response.user_names.forEach(user_name => {
                         const val = insertHighlights(search, user_name.key);
-                        $('#userResults').append(`<li class="list-group-item">${val}</li>`);
+                        $('#userResults').append(`<li class="list-group-item">@${val}</li>`);
                     });
                     response.hits.forEach(hit => {
                         const d = hit._source;
                         const postHtml=insertHighlights(search, d.post_value);
                         $('#postResults').append(`
                             <li class="list-group-item">
-                                Post: ${postHtml}
+                                ${postHtml}
                             </li>
                         `);
                     });
@@ -77,7 +85,7 @@ else{
         });
 
         function insertHighlights(search, str){
-            return replaceAll(str, search, '<b>'+search+'</b>');
+            return replaceAll(str, search, '<b class="text-success">'+search+'</b>');
         }
 
         function replaceAll(str, find, replace) {
